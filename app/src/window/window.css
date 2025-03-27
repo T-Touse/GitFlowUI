@@ -1,0 +1,152 @@
+/* ========== BARRE DE TITRE ========== */
+.title-bar {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	--bar-size:2em;
+	height: var(--bar-size);
+	padding: 1px 0px 2px;
+	background-color: var(--bg-outer);
+	color: var(--text-color);
+}
+
+.app-logo {
+	width: var(--bar-size);
+	aspect-ratio: 1;
+	margin: 0 5px;
+}
+
+.title-bar ul {
+	list-style: none;
+}
+
+.title-bar>.menu-list {
+	margin-right: auto;
+}
+
+.menu-list {
+	margin: 0;
+	padding: 0;
+}
+
+.menu-separator hr{
+	opacity: .8;
+	margin-block: 2px;
+}
+
+/* ========== MENU ITEMS ========== */
+.menu-item {
+	-webkit-app-region: no-drag;
+	color: var(--text-color);
+	background-color: var(--menu-item-bg);
+	transition: background-color 0.25s ease;
+	padding: 5px 10px;
+	border-radius: 2px;
+	text-transform: capitalize;
+}
+
+.menu-item:hover {
+	background-color: var(--menu-item-hover);
+}
+
+/* ========== DROPDOWN ========== */
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-menu {
+	display: none;
+	min-height: 1em;
+	position: absolute;
+	background-color: var(--dropdown-bg);
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	padding: 2px 1px;
+	z-index: 1;
+	border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-menu {
+	display: block;
+}
+
+.menu-list>.menu-item.dropdown>.dropdown-menu {
+	top: var(--bar-size);
+	left:0;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+.dropdown-menu>.menu-item {
+	border-radius: 2px;
+}
+
+.dropdown-menu>.menu-item:hover {
+	background-color: var(--dropdown-hover);
+}
+
+/* ========== BOUTONS DE CONTRÔLE DE FENÊTRE ========== */
+.window-controls {
+	display: flex;
+	flex-direction: row;
+	width: 8em;
+	padding: 1px;
+	gap: 1px;
+	justify-content: end;
+}
+
+.control-button {
+	border-radius: 2px;
+	border: none;
+	width: 2.5em;
+	padding: 0px;
+	background-color: var(--control-btn-bg);
+	color: var(--text-color);
+	transition: background-color .5s, box-shadow .5s;
+}
+
+/* Styles des boutons en fonction de leur position */
+.window-controls .control-button:nth-child(1) {
+	--color: #2c7;
+	--color-hover: #2a6;
+}
+
+.window-controls .control-button:nth-child(2) {
+	--color: #fc0;
+	--color-hover: #f91;
+}
+
+.window-controls .control-button:nth-child(3) {
+	--color: #e43;
+	--color-hover: #c32;
+}
+
+.window-controls .control-button:hover {
+	background-color: var(--color-hover);
+}
+
+/* ========== STYLE UNIX (MacOS-Like) ========== */
+[data-theme="unix"] .title-bar {
+	flex-direction: row-reverse;
+}
+
+[data-theme="unix"] .window-controls {
+	flex-direction: row-reverse;
+	padding: 1px 8px;
+	justify-content: space-evenly;
+}
+
+[data-theme="unix"] .window-controls .control-button {
+	color: #0000;
+	margin: auto;
+	aspect-ratio: 1;
+	width: 1em;
+	border-radius: 1em;
+	background-color: var(--color);
+	box-shadow: #0002 1px 2px 4px, inset #eee2 0px 1px 4px -4px;
+}
+
+[data-theme="unix"] .window-controls .control-button:hover {
+	box-shadow: #0008 1px 4px 8px, inset #eee4 2px 3px 8px;
+}

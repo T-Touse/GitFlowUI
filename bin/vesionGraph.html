@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../app/assets/src/VersionGraph.js"></script>
+</head>
+<body>
+	<graph-version></graph-version>
+	<script>
+		const graph = document.querySelector('graph-version')
+		graph.main.commit("start")
+		const dev = graph.main.branch("develop")
+		const feature = dev.branch("feature")
+		feature.commit("feature1")
+		dev.commit("dev1")
+		graph.main.commit("main1")
+		graph.main.merge(dev)
+		graph.main.commit("main+dev")
+		dev.commit("dev2")
+		dev.merge(feature)
+		graph.render()
+		graph.addEventListener(GraphVersion.REQUEST_MERGE,(ev)=>{
+			const {branch,baseBranch} = ev.detail
+			baseBranch.merge(branch)
+		})
+		let branch = 1
+		graph.addEventListener(GraphVersion.REQUEST_NEW_BRANCH,(ev)=>{
+			const {baseBranch} = ev.detail
+			baseBranch.branch("new branch"+(branch++))
+		})
+	</script>
+</body>
+</html>

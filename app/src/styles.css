@@ -1,0 +1,181 @@
+:root{
+	--text-size: clamp(16px, calc(58px - 4 * 1vw), 32px); /* 2em -> 1em entre 640px et 1024px */
+	--clickable:#07f;
+	--clickable-text:#fff;
+	--clickable-hover:#05b;
+	--primary-bg:#fff;
+	--primary-text:#222;
+	--primary-border:#ccc;
+	--bg:var(--primary-bg);
+	--text:var(--primary-text);
+	--border:var(--primary-border);
+}
+body {
+	font-size: var(--text-size);
+    line-height: 1.5;
+    font-family: sans-serif;
+    color: var(--primary-text);
+    background-color: var(--primary-bg);
+    margin: 0;
+    padding: 0;
+}
+*{box-sizing: border-box;}
+
+/* Titres avec gestion automatique de la hiérarchie */
+h1, h2, h3, h4, h5, h6 {
+    font-size: clamp(16px, calc(6px * calc( 6 - var(--h-level)) + var(--text-size, 16px)), 64px);
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+
+h1 { --h-level: var(--h-level,1); }
+h2 { --h-level: var(--h-level,2); }
+h3 { --h-level: var(--h-level,3); }
+h4 { --h-level: var(--h-level,4); }
+h5 { --h-level: var(--h-level,5); }
+h6 { --h-level: var(--h-level,6); }
+
+/* Paragraphes et liens */
+p {
+    margin: 1em 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    text-decoration: underline;
+	color: var(--clickable-hover);
+}
+
+a[href] {
+    cursor: pointer;
+}
+
+a[href^="http"], a[href^="/"] {
+    color: var(--clickable);
+}
+
+/* Styles de base pour texte enrichi */
+strong, b {
+    font-weight: bold;
+}
+
+em, i {
+    font-style: italic;
+}
+
+sub, sup {
+    font-size: 0.8em;
+}
+
+small {
+    font-size: 0.85em;
+}
+
+big {
+    font-size: 1.25em;
+}
+
+
+/* ================================ */
+/* 📋 Formulaires et Interactions  */
+/* ================================ */
+input:not([type=button], [type=submit]), 
+textarea, 
+select, 
+datalist {
+    width: 100%;
+    padding: 0.5em;
+    font-size: 1em;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+input[type=button], input[type=submit], button {
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 4px;
+    background: var(--clickable);
+    color: var(--clickable-text);
+    font-size: 1em;
+}
+
+input[type=button]:hover, input[type=submit]:hover, button:hover {
+    background: var(--clickable-hover);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+fieldset {
+    border: 1px solid var(--border);
+    padding: 1em;
+    margin: 1em 0;
+}
+
+legend {
+    font-weight: bold;
+}
+
+/* ================================ */
+/* 🏗️ Structure et Layout        */
+/* ================================ */
+nav, header, footer, main, section, article, aside, address {
+    display: block;
+}
+
+details {
+    margin: 1em 0;
+    cursor: pointer;
+}
+
+summary {
+    font-weight: bold;
+}
+
+ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	li{
+		display: inline;
+		float: left;
+		a{
+			display: block;
+			padding: 8px;
+		}
+	}
+}
+
+.row,.col{display:flex;}
+.row{flex-direction:row;}
+.col{flex-direction:column;}
+
+.w-1{width:min(25%,25vw);}
+.w-2{width:min(25%,25vw);}
+.w-3{width:min(50%,50vw);}
+.w-4{width:min(50%,50vw);}
+.w-5{width:min(50%,50vw);}
+.w-6{width:min(75%,75vw);}
+.w-7{width:min(75%,75vw)}
+.w-8{width:min(100%,100vw);}
+.w-9{width:min(100%,100vw);}
+.w-f{width:min(100%,100vw);}
+@media (min-ratio:1) {
+	.w-1{width:min(10%,10vw);}
+	.w-2{width:min(20%,20vw);}
+	.w-3{width:min(30%,30vw);}
+	.w-4{width:min(40%,40vw);}
+	.w-5{width:min(50%,50vw);}
+	.w-6{width:min(60%,60vw);}
+	.w-7{width:min(70%,70vw)}
+	.w-8{width:min(80%,80vw);}
+	.w-9{width:min(90%,90vw);}
+	.w-f{width:min(100%,100vw);}
+}

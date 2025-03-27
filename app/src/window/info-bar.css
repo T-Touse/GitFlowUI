@@ -1,0 +1,31 @@
+.info-bar {
+	box-sizing: border-box;
+	width: 100%;
+	background: var(--bg-outer);
+	color: var(--text-color);
+	padding: 2px 3em;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	border-top: 1px solid var(--border-color);
+	font-size: 10pt;
+}
+
+.info-item {
+	margin-right: 16px;
+}
+
+.info-status {
+	display: flex;
+	align-items: center;
+}
+
+.loading-icon {
+	animation: spin 1s linear infinite;
+	margin-right: 8px;
+}
+
+@keyframes spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}

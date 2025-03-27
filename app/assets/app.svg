@@ -1,0 +1,27 @@
+<!-- ?xml version="1.0" encoding="utf-8"? -->
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="BtoC">
+			<stop offset="0%" stop-color="#9f0" />
+			<stop offset="100%" stop-color="#46f" />
+		</linearGradient>
+		<linearGradient id="BtoD">
+			<stop offset="0%" stop-color="#9f0" />
+			<stop offset="100%" stop-color="#f0e" />
+		</linearGradient>
+	</defs>
+	<!-- LINKS -->
+	<g stroke-width="18" fill="#0000">
+		<path d="M20,20 L80,20" stroke="#46f"/>
+		<path d="M20,50 C65,50 65,20 80,20" stroke="url(#BtoC)"/>
+		<path d="M20,50 C65,50 65,80 80,80" stroke="url(#BtoD)"/>
+	</g>
+	<!-- Commits -->
+	<g stroke="#fff" stroke-width="2">
+		<circle cx="20" cy="20" r="9" fill="#46f"/>
+		<circle cx="80" cy="20" r="9" fill="#46f"/>
+		<circle cx="20" cy="50" r="9" fill="#9f0"/>
+		<circle cx="80" cy="80" r="9" fill="#f0e"/>
+	</g>
+
+</svg>

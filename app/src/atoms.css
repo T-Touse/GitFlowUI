@@ -1,0 +1,46 @@
+.tab-list {
+	overflow: hidden;
+	background-color: var(--primary-bg);
+	padding: 1px;
+	gap: 1px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab-item {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab-item :hover {
+	background-color: var(--primary-color-hover);
+}
+
+/* Create an active/current tablink class */
+.tab-item .active {
+	background-color: var(--primary-color);
+}
+
+.sidebar {
+	height: 100%;
+	width: 0;
+	position: relative;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: var(--inner-bg);
+	overflow-x: hidden;
+	padding: 16px 0px;
+	box-sizing: border-box;
+	transition: 0.5s;
+}
+
+.sidebar.show {
+	padding-inline: 5px;
+	width: clamp(100px,100%,25vw);
+}

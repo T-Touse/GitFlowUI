@@ -1,25 +1,12 @@
-import { useTranslation } from "./LanguageProvider";
-import "./window.css";
 import { Fragment,useState } from "react"
+import "./window.css";
+import { maximize, minimize,close } from "./controls";
+import { Translate, translate } from "../utils/LanguageProvider";
 
 const APPICON = <img className="app-logo" src="assets/app.svg" alt="⧟" />;
 
-const isElectron = window && window.process && window.process.type;
-const win = isElectron ? window.require("electron").remote.getCurrentWindow() : null;
-const NOOP = () => { }
-const minimize = win ? () => win.minimize() : NOOP
-const maximize = win ? () => {
-	const isMaximized = win.isMaximized();
-	if (isMaximized) {
-		win.unmaximize();
-	} else {
-		win.maximize();
-	}
-	setMaximized(!isMaximized)
-} : NOOP
-const close = win ? () => win.close() : NOOP
-
 function ControlButton({ action, icon, title, color, look }) {
+	title = translate(title)
 	return (
 		<button className="control-button" onClick={action}
 			aria-label={title} aria-hidden={true} tabIndex={-1} data-tooltip={title} data-placement="bottom" >
@@ -51,10 +38,9 @@ function generateMenuList(menu){
 
 function MenuItem({ name, action, subMenu }) {
 	let hasSubMenu = !!subMenu;
-	const {tl} = useTranslation()
 	return (
 		<li className={`menu-item ${hasSubMenu ? "dropdown" : ""}`} onClick={action}>
-			{tl(name)}
+			<Translate value={name}/>
 			{hasSubMenu && <ul className="dropdown-menu">{generateMenuList(subMenu)}</ul>}
 		</li>
 	);

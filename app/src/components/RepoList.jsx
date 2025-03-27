@@ -1,8 +1,16 @@
-import { useTranslation } from "../window/LanguageProvider"
+import { translate } from "../utils/LanguageProvider"
+import { SearchList } from "./SearchInput";
+
+function listRepo(){
+	return ["React", "Electron", "JavaScript", "CSS", "Tailwind"];
+}
+
+export function Repo({value}){
+	return <article>{value}</article>
+}
 
 export function RepoList(){
-	const {tl} = useTranslation()
 	return (<div className="column repo-search">
-		<input type="text" placeholder={tl("search.repo")} />
+		<SearchList placeholder={translate("search.repo")} get={listRepo} template={Repo} />
 	</div>)
 }

@@ -13,6 +13,11 @@
 
 /* ========== THÈME SOMBRE ========== */
 [data-theme="dark"] {
+	--inner-bg:#111;
+	--inner-text:#eee;
+	--inner-color:#333;
+	--inner-color-hover:#555;
+
 	--primary-bg:#222;
 	--primary-text:#eee;
 	--primary-color:#46b;
@@ -124,17 +129,90 @@ body{
 .bottom{
 	bottom: 0;margin-top:auto;margin-bottom: 0;
 }
-input:not([type=checkbox],[type=radio]),select,textarea,button{
+.input,input:not([type=checkbox],[type=radio]),select,textarea,button{
 	width: clamp(128px,100%,512px);
 	margin-inline:auto;
 }
-input:not([type=range],[type=checkbox],[type=radio]),select,textarea,button{
+.input,input:not([type=range],[type=checkbox],[type=radio]),select,textarea,button{
 	padding: 10px;
-	border: 1px solid var(--border-color);
 	border-radius: 5px;
 	font-size: 16px;
 	box-sizing: border-box;
+	color:var(--primary-bg);
+	background-color: var(--primary-text);
+	border: 1px solid #0000;
+	&:focus{
+		border: 1px solid var(--primary-color-hover);
+	}
 }
+.input,input:not([type=range],[type=checkbox],[type=radio]),select,button{
+	height: 2em;
+}
+
+.btn, button {
+	padding: 10px 20px;
+	background-color: var(--primary-color);
+	border: none;
+	border-radius: 5px;
+	color: var(--primary-text);
+	font-size: 16px;
+	cursor: pointer;
+	transition: background 0.3s ease;
+}
+
+.btn:hover,button:hover {
+	background-color: var(--primary-color-hover);
+}
+
+
+datalist{
+	width: 100%;
+	top: 100%;
+	left: 0;
+	box-sizing: border-box;
+	position: absolute;
+	background-color: var(--primary-text);
+	border: 1px solid var(--primary-color-hover);
+	border-radius: 0 0 5px 5px;
+	border-top: none;
+	padding: 2px 1px;gap:1px;
+	max-height: 75vh;
+	height: 0px;
+	flex-direction: column;
+	overflow-y: hidden
+}
+option{
+	background-color: var(--primary-text);
+	color:var(--primary-bg);
+	padding: 4px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+.input:has(>input[type="search"]:focus){
+	outline: var(--primary-color-hover) 2px solid;
+}
+.input>input[type="search"]{
+	border:none;outline:none;
+}
+input[type="search"]:focus:has(~datalist){
+	border-radius:5px 5px 0px 0px;
+}
+input[type="search"]:focus~datalist{
+	display: flex;
+	overflow-y: auto;
+	height: auto;
+	&>option{
+		display: block;
+		&::before{
+			content: attr(value);
+		}
+		&:hover{
+			background-color: var(--primary-color-hover);
+			color:var(--primary-text);
+		}
+	}
+}
+
 section{
 	margin: 5px;
 	border-radius: 5px;
@@ -149,4 +227,27 @@ h1:has(~ .subtitle){
 .subtitle{
 	margin-top: 0;
 	opacity: .5;
+}
+.input:has(input)>input{
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+}
+.input:has(input){
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: end;
+	gap:.5em;
+}
+
+.list-inner{
+	background-color: var(--bg-inner);
+	border: 1px solid var(--bg-outer);
+	margin: 16px 5px;
+	border-radius: 5px;
+	padding: 5px;
+	max-height: 75vh;
+	overflow-y: hidden
 }

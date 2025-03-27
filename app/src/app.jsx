@@ -1,9 +1,10 @@
 import React,{useState} from "react"
 import "./theme.css"
+import "./atoms.css"
 import { TitleBar } from "./window/TitleBar"
 import { InfoBar } from "./window/InfoBar";
 import { WhatSUpDocView } from "./view/WhatSUpDocView";
-import { LanguageProvider } from "./window/LanguageProvider";
+import { LanguageProvider } from "./utils/LanguageProvider";
 import { ThemeProvider } from "./window/Theme";
 import { AppView } from "./view/AppView";
 

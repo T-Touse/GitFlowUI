@@ -1,5 +1,5 @@
 import { RepoList } from "../components/RepoList"
-import { useTranslation } from "../window/LanguageProvider"
+import { useTranslation } from "../utils/LanguageProvider"
 import "./whatsup.css"
 
 function Button({ label, onClick }) {

@@ -89,3 +89,18 @@ const CMDS:Record<string,string|((...args:any[])=>string)> = {
 	stash:GIT+"stash",
 	pop:GIT+"stash pop",
 }
+
+function exec(cmd:string){
+
+}
+export const git:Record<string,Function> = {}
+for(const cmd in CMDS){
+	let builder:(...args:any[])=>string;
+	if(typeof CMDS[cmd] == "function"){
+		builder = CMDS[cmd];
+	}else{
+		const str:string = CMDS[cmd] as string;
+		builder = (_)=>str;
+	}
+	git[cmd] = (...args:any[])=>exec(builder(args))
+}

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from "react"
+import React, { createContext, useState, useEffect, useContext, useMemo } from "react"
 
 const LanguageContext = createContext()
 
@@ -49,5 +49,16 @@ export function LanguageProvider({ children }) {
 }
 
 export function useTranslation() {
-	return useContext(LanguageContext)
+	return useContext(LanguageContext);
+}
+
+export function Translate({ value }) {
+	const { tl } = useContext(LanguageContext);
+	return <>{tl(value)}</>;
+}
+
+// Fonction de traduction globale
+export function translate(value) {
+	const context = useContext(LanguageContext);
+	return context?.tl(value) || value; // Si tl n'est pas dispo, retourne la valeur brute
 }

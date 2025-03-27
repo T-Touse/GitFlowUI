@@ -8,6 +8,7 @@
 	padding: 1px 0px 2px;
 	background-color: var(--bg-outer);
 	color: var(--text-color);
+	user-select: none;
 }
 
 .app-logo {

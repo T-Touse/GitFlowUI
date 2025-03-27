@@ -11,26 +11,3 @@
 .whatsup > div {
 	height: clamp(128px, 100%, 1024px);
 }
-
-.whatsup-btn {
-	padding: 10px 20px;
-	background-color: var(--primary-color);
-	border: none;
-	border-radius: 5px;
-	color: white;
-	font-size: 16px;
-	cursor: pointer;
-	transition: background 0.3s ease;
-}
-
-.whatsup-btn:hover {
-	background-color: var(--primary-color-hover);
-}
-
-.repo-search input {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid var(--border-color);
-	border-radius: 5px;
-	font-size: 16px;
-}

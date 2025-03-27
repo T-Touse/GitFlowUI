@@ -8,6 +8,7 @@ class GraphVersion extends HTMLElement {
 		GraphVersion.randomColor.last = hue
 		return `hsl(${hue}, 100%, 50%)`
 	}
+	static TEXT_COLOR = "#000"
 	#pointerdown = false;
 	#nodes = [];
 	#links = new Set();
@@ -65,6 +66,7 @@ class GraphVersion extends HTMLElement {
 	}
 	connectedCallback(){
 		this.#resizeCanvas();
+		GraphVersion.TEXT_COLOR = getComputedStyle(this.parentElement).color
 	}
 	#maxX = 0
 	#maxY = 0
@@ -212,7 +214,7 @@ GraphVersion.Branch = class {
 		ctx.stroke()
 		ctx.translate(x, y)
 		ctx.globalAlpha = 1
-		ctx.fillStyle = "#000"
+		ctx.fillStyle = GraphVersion.TEXT_COLOR
 		if(this.name){
 			ctx.font = "16px serif";
 			const tm = ctx.measureText(this.name)
@@ -287,7 +289,7 @@ GraphVersion.Node = class {
 		}{
 			this.#circle(ctx, GraphVersion.Node.RADIUS, GraphVersion.Node.SCALE)
 		}
-		ctx.fillStyle = "#000"
+		ctx.fillStyle = GraphVersion.TEXT_COLOR
 		if(this.name){
 			ctx.font = "16px serif";
 			const tm = ctx.measureText(this.name)

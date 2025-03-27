@@ -1,5 +1,6 @@
 import React,{useState} from "react"
 import "./info-bar.css"
+import { Translate } from "../utils/LanguageProvider"
 
 export function InfoBar({  }) {
 	const [status, setStatus] = useState({ loading: false, message: "" })
@@ -9,10 +10,10 @@ export function InfoBar({  }) {
 		<footer className="info-bar">
 			{/* Statistiques générales */}
 			<div className="info-item">
-				<strong>Dépôts :</strong> {stats.repos}
+				<strong><Translate value="repo"/> :</strong> {stats.repos}
 			</div>
 			<div className="info-item">
-				<strong>Fichiers suivis :</strong> {stats.files}
+				<strong><Translate value="file.followed"/> :</strong> {stats.files}
 			</div>
 
 			{/* Action en cours */}
@@ -23,7 +24,7 @@ export function InfoBar({  }) {
 						<span>{status.message}</span>
 					</>
 				) : (
-					<span>{status.message || "Prêt"}</span>
+					<span><Translate value={status.message || "ready"}/></span>
 				)}
 			</div>
 		</footer>

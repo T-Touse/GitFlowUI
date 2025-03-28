@@ -1,5 +1,5 @@
 export interface IBranch {
-	name: string;
+	get name(): string;
 	commit(message: string): Promise<boolean>;
 	merge(branch: IBranch): Promise<boolean>;
 	checkout(): Promise<boolean>;
@@ -9,23 +9,26 @@ export interface IBranch {
 }
 
 // 🌎 Interface pour une branche distante
-export interface IDistantBranch extends IBranch {
+export interface IRemoteBranch extends IBranch {
 	push(): Promise<boolean>;
 	pull(): Promise<boolean>;
-	fetch(): Promise<boolean>;
 }
 
 // 📦 Interface principale de gestion Git
-export interface IRepository {
-	main: IBranch;
-	branches(): Promise<IBranch[]>;
-	createBranch(name: string): Promise<IBranch>;
-	deleteBranch(name: string): Promise<boolean>;
-	remoteBranches(): Promise<IDistantBranch[]>;
+export interface IRepository<B extends IBranch> {
+	get name(): string;
+	get main(): B;
+	branches(): Promise<B[]>;
+	createBranch(name: string): Promise<B>;
+	deleteBranch(branch: B): Promise<boolean>;
+	isCurrent(branch:B):boolean;
+}
+export interface IRemoteRepository<B extends IRemoteBranch> extends IRepository<B>{
+	fetch(): Promise<boolean>;
 }
 
 export interface IGit{
-	init(dir:string):Promise<IRepository>;
-	clone(url:string):Promise<IRepository>;
-	repositories(query?:string):Promise<IRepository[]>;
+	init(dir:string):Promise<IRepository<IBranch>>;
+	clone(url:string,dir:string):Promise<IRepository<IBranch>>;
+	repositories(query?:string):Promise<IRepository<IBranch>[]>;
 }

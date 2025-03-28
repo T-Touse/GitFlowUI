@@ -1,17 +1,5 @@
 import { $ } from "bun";
-
-const GIT_FILE = process.env.GIT||"git";
-const GIT = async (strings:TemplateStringsArray,...values:any[])=>{
-	const cmd = strings.raw.reduce((b,s:string,n:number)=>{
-		b = b.concat(s)
-		b = b.concat(values[n]||"")
-		return b
-	},"")
-	const result = await $`${GIT_FILE} ${cmd}`
-	const exit = result.exitCode
-	const text = result.text()
-	return text
-}
+import { $GIT as GIT } from "./$git"
 function notEmpty(value:string){
 	return typeof value == "string" && value.length
 }
